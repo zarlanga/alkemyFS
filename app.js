@@ -23,7 +23,9 @@ ingresos y egresos de dinero cargados, y un listado de los últimos 10 registrad
 
 CREATE USER 'alkfs'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'alkpass';
 
+Error: ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client
 
+CAMBIAR EL IDENTIFIED WITH!!
 	
 
 
@@ -50,14 +52,23 @@ var url = require('url');
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-  host: "localhost",
+  /*host: "localhost",
   user: "alkfs",
-  password: "alkpass",
+  password: "alkpass",*/
+  host: "localhost",
+  user: "probando",
+  password: "paranode",
+
   database: 'alkdb'
   
 });
 
-console.log("in2");
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
+
+
 
 http.createServer(function (req, res) {
 
