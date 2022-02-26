@@ -22,10 +22,33 @@ ingresos y egresos de dinero cargados, y un listado de los últimos 10 registrad
 	
 */
 
-var http = require('http');
+console.log("in");
 
+var http = require('http');
+var url = require('url');
 
 http.createServer(function (req, res) {
-		res.writeHead(200, {'Content-Type': 'text/html'});
-  		res.end('test');
-	}).listen(8080);
+
+	var ur = url.parse(req.url, true);
+	console.log(ur.pathname);
+
+	switch(ur.pathname){
+		case "/index.html":
+			res.writeHead(200, {'Content-Type': 'text/html'});
+			res.end('HOME');
+		break;
+		
+		case "/list.html":
+			var ret ="";
+			for (let i =0; i<10; i++) ret += 'list ' + i + "<br>"
+			res.writeHead(200, {'Content-Type': 'text/html'});
+			res.end(ret);
+		break;
+
+		default: 
+			res.writeHead(200, {'Content-Type': 'text/html'});
+			res.end("fourofourrr");
+
+	}
+
+}).listen(8080);
