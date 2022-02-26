@@ -19,13 +19,45 @@ ingresos y egresos de dinero cargados, y un listado de los últimos 10 registrad
 	
 	database: setup
 	 tabla: operaciones (id, concepto, monto, fecha, ingreso/egreso, {idusuario?, categoriaDeOperacion?})
+
+
+CREATE USER 'alkfs'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'alkpass';
+
+
 	
+
+
+GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'alkfs'@'localhost' WITH GRANT OPTION;
+
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "alkfs",
+  password: "alkpass",
+  database: 'alkdb'
+  
+});
+
 */
 
 console.log("in");
 
+
+
 var http = require('http');
 var url = require('url');
+
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "alkfs",
+  password: "alkpass",
+  database: 'alkdb'
+  
+});
+
+console.log("in2");
 
 http.createServer(function (req, res) {
 
@@ -33,6 +65,7 @@ http.createServer(function (req, res) {
 	console.log(ur.pathname);
 
 	switch(ur.pathname){
+
 		case "/index.html":
 			res.writeHead(200, {'Content-Type': 'text/html'});
 			res.end('HOME');
