@@ -34,6 +34,8 @@ var db = require('./scripts/maisql.js');
 
 //db.test();
 
+//db.seedDB(10);
+
 http.createServer(function (req, res) {
 
 	var ur = url.parse(req.url, true);

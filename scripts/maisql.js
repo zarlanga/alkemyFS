@@ -39,14 +39,21 @@ function buildSqlInsert (param) {
 }
 
 function createRandomizedParam() {
-  var obj = {};
+  return {concepto:"randomizado",
+          monto: Math.floor(Math.random() * 400),
+          IngEgr: 1 + Math.floor(Math.random()*2)
+          };
 }
 
-var objTest ={concepto:"testenum2",monto:30,IngEgr:2};
+//var objTest ={concepto:"testenum2",monto:30,IngEgr:2};
 
-makeQueryDB(buildSqlInsert(objTest))
+//makeQueryDB(buildSqlInsert(objTest))
 
+function seedDB(n) {
+  for (let i = 0; i <n; i++) makeQueryDB(buildSqlInsert())
+}
 
 function test() {console.log("test");}
 
 exports.test = test;
+exports.seedDB = seedDB;
