@@ -42,7 +42,7 @@ function createRandomizedParam() {
   var obj = {};
 }
 
-var objTest ={concepto:"empanadas",monto:100,IngEgr:"Ingreso"};
+var objTest ={concepto:"testenum2",monto:30,IngEgr:2};
 
 makeQueryDB(buildSqlInsert(objTest))
 
