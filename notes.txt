@@ -10,3 +10,24 @@ mysql_native_password
 GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'alkfs'@'localhost' WITH GRANT OPTION;
 
 
+	CREATE TABLE operations (OpID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+													Concepto VARCHAR(40) NOT NULL,
+													Monto DECIMAL(12, 2) NOT NULL,
+													FechaCreado DEFAULT CURRENT_TIMESTAMP NOT NULL,
+													FechaEditado ON UPDATE CURRENT_TIMESTAMP,
+													IngEgr ENUM('Ingreso', 'Egreso') NOT NULL,
+													
+													UserID int FOREIGN KEY,
+													Categoria ENUM ('Comida', 'Servicios', 'Transporte', 'Activos', 'Honorarios')
+
+													
+
+													);
+
+SELECT MAX(OpID) from operations;
+
+Select monto from operations where opid = (SELECT MAX(OpID) from operations);
+
+select (-1 * (Select monto from operations where opid = (SELECT MAX(OpID) from operations)));
+
+AHREQUEESTONOSIRVESIPUEDOMODIFICARELVALORDEUNREGISTROOOO
