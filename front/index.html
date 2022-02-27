@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>HOME Alkemy Challenge </title>
+</head>
+<body>
+	<h1 style='background-color: blueviolet;'>HOME</h1>
+	<p id='saldo'></p>
+	<script type="text/javascript">
+		fetch('testfetch.html')
+			//.then( data => console.log(data))
+			//.then(response => response.json())
+  			.then(fields => {
+  				/*Object.keys(fields).forEach(function(key) {
+      				var field = fields[key];
+      				console.log(field)
+				    });*/
+  				document.getElementById('saldo').innerHTML = "lala " + JSON.stringify( fields )
+  			});
+				
+	</script>
+</body>

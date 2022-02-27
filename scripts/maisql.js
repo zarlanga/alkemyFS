@@ -18,15 +18,31 @@ con.connect(function(err) {
 });
 
 function makeQueryDB(sql) {
-  con.query(sql, function(err, result){
+  return con.query(sql, function(err, result){
     if (err) throw err;
-    console.log(result)
+    console.log("maisql" + result)
   })
 
 }
 
+function getRecords(sql) {
+  con.query("SELECT * FROM operations", function (err, result, fields) {
+    if (err) throw err;
+   
+    Object.keys(result).forEach(function(key) {
+      //console.log("key" + key)
+      var row = result[key];
+      for (const property in row) {
+        //console.log(`${property}: ${row[property]}`);
+        }
+      
+    });
+   
+    })    
+}
 
-function buildSqlInsert (param) {
+
+function buildSqlInsert(param) {
 
   if (!param) param = createRandomizedParam()
 
@@ -34,7 +50,6 @@ function buildSqlInsert (param) {
   sql += `'${param.concepto}', '${param.monto}','${param.IngEgr}');` 
 
   return sql;
-
   
 }
 
@@ -45,9 +60,6 @@ function createRandomizedParam() {
           };
 }
 
-//var objTest ={concepto:"testenum2",monto:30,IngEgr:2};
-
-//makeQueryDB(buildSqlInsert(objTest))
 
 function seedDB(n) {
   for (let i = 0; i <n; i++) makeQueryDB(buildSqlInsert())
@@ -55,5 +67,12 @@ function seedDB(n) {
 
 function test() {console.log("test");}
 
+//var objTest ={concepto:"testenum2",monto:30,IngEgr:2};
+
+//makeQueryDB(buildSqlInsert(objTest))
+
+
 exports.test = test;
 exports.seedDB = seedDB;
+exports.makeQueryDB = makeQueryDB;
+exports.getRecords = getRecords;

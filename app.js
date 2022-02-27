@@ -19,16 +19,12 @@ ingresos y egresos de dinero cargados, y un listado de los últimos 10 registrad
 	
 	database: setup
 
-
-
 */
-
-console.log("in");
-
 
 
 var http = require('http');
 var url = require('url');
+var fs = require('fs');
 
 var db = require('./scripts/maisql.js');
 
@@ -44,10 +40,25 @@ http.createServer(function (req, res) {
 	switch(ur.pathname){
 
 		case "/index.html":
-			res.writeHead(200, {'Content-Type': 'text/html'});
-			res.end('HOME');
-		break;
-		
+			fs.readFile('front/index.html', function(err, data) {
+				
+				if (err) console.log(err);
+				res.writeHead(200, {'Content-Type': 'text/html'});
+				res.end(data);
+			});
+			break;
+			
+		case "/testfetch.html":
+					
+					var retquery = db.getRecords();
+					for (const property in retquery) {
+        		console.log(`${property}: }`);
+        	}
+					
+					res.writeHead(200, {'Content-Type': 'text/html'});
+					res.end("pepepep")
+				break;
+
 		case "/list.html":
 			var ret ="";
 			for (let i =0; i<10; i++) ret += 'list ' + i + "<br>"
