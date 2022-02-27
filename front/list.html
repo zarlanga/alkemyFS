@@ -28,17 +28,39 @@
 		.then(data => data.json())
 		.then(data => {
 			for (r of data) {
-				var text = `<form class=${r.IngEgr == "Ingreso" ? 'ingreso' : 'egreso'} action='/editRecord'>
+				var text = `<form action="editRecord" id=${'r' + r.OpID} class=${r.IngEgr == "Ingreso" ? 'ingreso' : 'egreso'} action='/editRecord'>
 								<input type="date" name="FechaCreado" value='${getDateYo(r.FechaCreado)}' readonly required>
 								<input type="text" name="OpID" value='${r.OpID}' size="5" readonly>
 								<input type="text" name="Concepto" value='${r.Concepto}' readonly required>
-								<input type="number" name="Monto" value='${r.Monto}' width="10" readonly required>
-								<input type="text" name="IngEgr" value='${r.IngEgr}' disabled>
+								<input type="number" name="Monto" value='${r.Monto}' readonly required>
+								<input type="text" name="IngEgr" value='${r.IngEgr}'size="8" disabled>
+								<button id=${'b' + r.OpID} type="button" onclick='habilitar(${r.OpID})'>Editar</button>
 							</form>`
 				document.getElementById("list").innerHTML += text;
 
 			}
 		})
+
+	function habilitar(id) {
+		//var formSelector = "r"+id;
+		var form =document.getElementById("r"+id);
+
+		var subitemsSelector = `#r${id} *`
+		var fields = document.querySelectorAll(subitemsSelector);
+		var button = document.getElementById("b"+id);
+		if (button.innerHTML == "Editar"  ) {
+			fields.forEach(i =>{
+					i.removeAttribute("readonly")
+					i.style.backgroundColor = "cyan"
+				})
+			button.innerHTML = "Descartar Cambios";
+			form.innerHTML += '<input type="submit" value="Realizar Cambios" style="background-color:red"> '
+
+		} else {
+			location.reload()
+		} 
+
+	}
 
 
 	function getDateYo(timestamp) {
