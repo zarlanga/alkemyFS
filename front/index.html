@@ -8,15 +8,25 @@
 <body>
 	<h1 style='background-color: blueviolet;'>HOME</h1>
 	<p id='saldo'></p>
+	<br>
+	<div id='last10'></div>
 	<script type="text/javascript">
-		fetch('testfetch.html')
+		fetch('getSaldo')
+			.then(data => data.json())
+			.then(data => document.getElementById('saldo').innerHTML = JSON.stringify(data));
+		fetch('last10')
+			.then(data => data.json())
+			.then(data => {
+				for (r of data) document.getElementById('last10'). innerHTML += `${r.Concepto} // ${r.Monto}  // ${r.IngEgr} <br>`
+			})
+
+
+
+		/*fetch('testfetch')
 			//.then( data => console.log(data))
 			.then(response => response.json())
   			.then(data => {
-  				/*Object.keys(fields).forEach(function(key) {
-      				var field = fields[key];
-      				console.log(field)
-				    });*/
+  		
   				document.getElementById('saldo').innerHTML = "lala " + JSON.stringify(data) +"<br>";
   				var cont = 0;
   				Object.keys(data).forEach(function(key) {
@@ -28,6 +38,7 @@
       
           		})
   			});
+		*/
 				
 	</script>
 </body>

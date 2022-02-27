@@ -1,7 +1,5 @@
 var mysql = require('mysql');
 
-var createTableQuery = "CREATE TABLE operations (OpID int NOT NULL AUTO_INCREMENT PRIMARY KEY, Concepto VARCHAR(40) NOT NULL, Monto DECIMAL(12, 2) NOT NULL, FechaCreado TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, FechaEditado TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, IngEgr ENUM('Ingreso', 'Egreso') NOT NULL);"
-
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -17,31 +15,54 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 
-function makeQueryDB(sql) {
-  return con.query(sql, function(err, result){
-    if (err) throw err;
-    console.log("maisql" + result)
-  })
 
-}
+function makeQueryDB(type) {
 
-function getRecords(sql) {
+  var sql =buildQuery(type);
+
+
   return new Promise(function(resolve, reject){
-    con.query("SELECT * FROM operations", function (err, result, fields) {
-      if (err) throw err;
-      resolve(result)
-          /*Object.keys(result).forEach(function(key) {
-          //console.log("key" + key)
-            var row = result[key];
-            for (const property in row) {
-            //console.log(`${property}: ${row[property]}`);
-            }
-      
-          });*/
-   
+    con.query(sql || "SELECT * FROM operations", function (err, result, fields) {
+        if (err) throw err;
+        resolve(result)
       })
     })    
 }
+
+
+function buildQuery(type) {
+  switch (type) {
+    case "allrecords":
+      return "SELECT * FROM operations"
+    break;
+
+    case "saldo":
+      return  "SELECT (SELECT sum(monto) AS SaldoP FROM operations WHERE IngEgr =1)-(SELECT sum(monto) AS SaldoN FROM operations WHERE IngEgr =2) as saldo;"
+    break;
+    
+    case "createTable":
+      return "CREATE TABLE operations (OpID int NOT NULL AUTO_INCREMENT PRIMARY KEY, Concepto VARCHAR(40) NOT NULL, Monto DECIMAL(12, 2) NOT NULL, FechaCreado TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, FechaEditado TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, IngEgr ENUM('Ingreso', 'Egreso') NOT NULL);"    
+    break
+
+    case "insertRandom":
+      return buildSqlInsert();
+    break;
+
+    case "last10":
+      return "SELECT * FROM operations ORDER BY OpID DESC LIMIT 10;"
+    break;
+
+    default:
+      return "SELECT * FROM operations"
+    break;
+  }
+  
+  
+}
+
+
+
+
 
 
 function buildSqlInsert(param) {
@@ -64,7 +85,7 @@ function createRandomizedParam() {
 
 
 function seedDB(n) {
-  for (let i = 0; i <n; i++) makeQueryDB(buildSqlInsert())
+  for (let i = 0; i <n; i++) makeQueryDB("insertRandom")
 }
 
 function test() {console.log("test");}
@@ -77,4 +98,4 @@ function test() {console.log("test");}
 exports.test = test;
 exports.seedDB = seedDB;
 exports.makeQueryDB = makeQueryDB;
-exports.getRecords = getRecords;
+//exports.getRecords = getRecords;

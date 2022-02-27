@@ -46,17 +46,19 @@ http.createServer(function (req, res) {
 				res.writeHead(200, {'Content-Type': 'text/html'});
 				res.end(data);
 			});
-			break;
+		break;
 			
-		case "/testfetch.html":
-					
-					//var retquery = db.getRecords();
-					//console.log(retquery);
+		case "/testfetch":
 					getQuery(res)
-					//res.writeHead(200, {'Content-Type': 'text/html'});
-					//res.setHeader('Content-Type', 'application/json');
-					//res.end(JSON.stringify(retquery))
-				break;
+		break;
+
+		case "/getSaldo":
+			getQuery(res, "saldo");
+		break;
+
+		case "/last10":
+			getQuery(res, "last10");
+		break;
 
 		case "/list.html":
 			var ret ="";
@@ -74,9 +76,9 @@ http.createServer(function (req, res) {
 }).listen(8080);
 
 
-async function getQuery(res) {
+async function getQuery(res, type) {
   
-  var retquery = await db.getRecords();
+  var retquery = await db.makeQueryDB(type);
   res.setHeader('Content-Type', 'application/json');
 	res.end(JSON.stringify(retquery))
   

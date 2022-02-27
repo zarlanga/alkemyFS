@@ -31,3 +31,25 @@ Select monto from operations where opid = (SELECT MAX(OpID) from operations);
 select (-1 * (Select monto from operations where opid = (SELECT MAX(OpID) from operations)));
 
 AHREQUEESTONOSIRVESIPUEDOMODIFICARELVALORDEUNREGISTROOOO
+
+mysql> select @currentSum:=@currentSum+Price from DemoTable809;
+
+
+/*Object.keys(result).forEach(function(key) {
+      //console.log("key" + key)
+        var row = result[key];
+        for (const property in row) {
+        //console.log(`${property}: ${row[property]}`);
+        }
+  
+  });*/
+
+/*Object.keys(fields).forEach(function(key) {
+	var field = fields[key];
+	console.log(field)
+});*/
+
+select sum(monto) as Saldo from operations where IngEgr =1;
+
+select (select sum(monto) as SaldoP from operations where IngEgr =1)-(select sum(monto) as SaldoN from operations where IngEgr =2) as saldo;
+
