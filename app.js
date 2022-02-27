@@ -18,27 +18,8 @@ ingresos y egresos de dinero cargados, y un listado de los últimos 10 registrad
 			 -login?
 	
 	database: setup
-	 tabla: operaciones (id, concepto, monto, fecha, ingreso/egreso, {idusuario?, categoriaDeOperacion?})
 
 
-CREATE USER 'alkfs'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'alkpass';
-
-Error: ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client
-
-CAMBIAR EL IDENTIFIED WITH!!
-	
-mysql_native_password 
-
-GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'alkfs'@'localhost' WITH GRANT OPTION;
-
-
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "alkfs",
-  password: "alkpass",
-  database: 'alkdb'
-  
-});
 
 */
 
@@ -49,22 +30,9 @@ console.log("in");
 var http = require('http');
 var url = require('url');
 
-var mysql = require('mysql');
+var db = require('./scripts/maisql.js');
 
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "alkfs",
-  password: "alkpass",
-  database: 'alkdb'
-  
-});
-
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
-
-
+//db.test();
 
 http.createServer(function (req, res) {
 
@@ -92,3 +60,5 @@ http.createServer(function (req, res) {
 	}
 
 }).listen(8080);
+
+

@@ -1,0 +1,12 @@
+
+CREATE USER 'alkfs'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'alkpass';
+
+Error: ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client
+
+CAMBIAR EL IDENTIFIED WITH!!
+	
+mysql_native_password 
+
+GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'alkfs'@'localhost' WITH GRANT OPTION;
+
+
