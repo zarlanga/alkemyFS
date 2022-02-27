@@ -11,13 +11,22 @@
 	<script type="text/javascript">
 		fetch('testfetch.html')
 			//.then( data => console.log(data))
-			//.then(response => response.json())
-  			.then(fields => {
+			.then(response => response.json())
+  			.then(data => {
   				/*Object.keys(fields).forEach(function(key) {
       				var field = fields[key];
       				console.log(field)
 				    });*/
-  				document.getElementById('saldo').innerHTML = "lala " + JSON.stringify( fields )
+  				document.getElementById('saldo').innerHTML = "lala " + JSON.stringify(data) +"<br>";
+  				var cont = 0;
+  				Object.keys(data).forEach(function(key) {
+          			console.log(cont++)
+            		var row = data[key];
+		            for (const property in row) {
+            			document.getElementById('saldo').innerHTML += `${property}: ${row[property]} <br>`;
+        		    }
+      
+          		})
   			});
 				
 	</script>

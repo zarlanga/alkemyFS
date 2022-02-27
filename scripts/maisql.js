@@ -26,18 +26,20 @@ function makeQueryDB(sql) {
 }
 
 function getRecords(sql) {
-  con.query("SELECT * FROM operations", function (err, result, fields) {
-    if (err) throw err;
-   
-    Object.keys(result).forEach(function(key) {
-      //console.log("key" + key)
-      var row = result[key];
-      for (const property in row) {
-        //console.log(`${property}: ${row[property]}`);
-        }
+  return new Promise(function(resolve, reject){
+    con.query("SELECT * FROM operations", function (err, result, fields) {
+      if (err) throw err;
+      resolve(result)
+          /*Object.keys(result).forEach(function(key) {
+          //console.log("key" + key)
+            var row = result[key];
+            for (const property in row) {
+            //console.log(`${property}: ${row[property]}`);
+            }
       
-    });
+          });*/
    
+      })
     })    
 }
 

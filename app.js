@@ -50,13 +50,12 @@ http.createServer(function (req, res) {
 			
 		case "/testfetch.html":
 					
-					var retquery = db.getRecords();
-					for (const property in retquery) {
-        		console.log(`${property}: }`);
-        	}
-					
-					res.writeHead(200, {'Content-Type': 'text/html'});
-					res.end("pepepep")
+					//var retquery = db.getRecords();
+					//console.log(retquery);
+					getQuery(res)
+					//res.writeHead(200, {'Content-Type': 'text/html'});
+					//res.setHeader('Content-Type', 'application/json');
+					//res.end(JSON.stringify(retquery))
 				break;
 
 		case "/list.html":
@@ -75,3 +74,10 @@ http.createServer(function (req, res) {
 }).listen(8080);
 
 
+async function getQuery(res) {
+  
+  var retquery = await db.getRecords();
+  res.setHeader('Content-Type', 'application/json');
+	res.end(JSON.stringify(retquery))
+  
+}
