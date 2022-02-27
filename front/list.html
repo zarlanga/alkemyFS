@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>LIST Alkemy Challenge </title>
+</head>
+<body>
+<h1>Listado de operaciones</h1>
+<div id='list'>
+	
+</div>
+
+
+<script type="text/javascript">
+	fetch('getFullList')
+		.then(data => data.json())
+		.then(data => {
+			for (r of data) {
+				var text = `<form class=${r.IngEgr == "Ingreso" ? 'ingreso' : 'egreso'} action='/editRecord'>
+								<input type="date" name="FechaCreado" value='${getDateYo(r.FechaCreado)}' readonly>
+								<input type="text" name="OpID" value='${r.OpID}' readonly>
+								<input type="text" name="Concepto" value='${r.Concepto}' readonly>
+								<input type="number" name="Monto" value='${r.Monto}' readonly>
+								<input type="text" name="IngEgr" value='${r.IngEgr}' disabled>
+							</form>`
+				document.getElementById("list").innerHTML += text;
+
+			}
+		})
+
+
+	function getDateYo(timestamp) {
+		timestamp = timestamp.slice(0,timestamp.indexOf("T"))
+		//console.log(timestamp);
+		return timestamp;
+	}
+
+</script>
+</body>

@@ -53,3 +53,35 @@ select sum(monto) as Saldo from operations where IngEgr =1;
 
 select (select sum(monto) as SaldoP from operations where IngEgr =1)-(select sum(monto) as SaldoN from operations where IngEgr =2) as saldo;
 
+
+
+/*function makeQueryDB(sql) {
+  con.query(sql, function(err, result){
+    if (err) throw err;
+    console.log("maisql" + result)
+  })
+
+}*/
+
+/*fetch('testfetch')
+			//.then( data => console.log(data))
+			.then(response => response.json())
+  			.then(data => {
+  		
+  				document.getElementById('saldo').innerHTML = "lala " + JSON.stringify(data) +"<br>";
+  				var cont = 0;
+  				Object.keys(data).forEach(function(key) {
+          			console.log(cont++)
+            		var row = data[key];
+		            for (const property in row) {
+            			document.getElementById('saldo').innerHTML += `${property}: ${row[property]} <br>`;
+        		    }
+      
+          		})
+  			});
+		*/
+
+		var ret ="";
+			for (let i =0; i<10; i++) ret += 'list ' + i + "<br>"
+			res.writeHead(200, {'Content-Type': 'text/html'});
+			res.end(ret);

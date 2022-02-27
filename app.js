@@ -10,6 +10,7 @@ ingresos y egresos de dinero cargados, y un listado de los últimos 10 registrad
 				Monto
 				Fecha
 				Tipo (ingreso o egreso)
+
 				Listado de operaciones registradas según su tipo (ingreso o egreso).
 				Desde el listado, se debe poder modificar o eliminar una operación registrada
 					previamente. No debe ser posible modificar el tipo de operación (ingreso o
@@ -49,7 +50,7 @@ http.createServer(function (req, res) {
 		break;
 			
 		case "/testfetch":
-					getQuery(res)
+			getQuery(res)
 		break;
 
 		case "/getSaldo":
@@ -60,11 +61,18 @@ http.createServer(function (req, res) {
 			getQuery(res, "last10");
 		break;
 
+		case "/getFullList":
+			getQuery(res, "allRecords");
+		break;
+
 		case "/list.html":
-			var ret ="";
-			for (let i =0; i<10; i++) ret += 'list ' + i + "<br>"
-			res.writeHead(200, {'Content-Type': 'text/html'});
-			res.end(ret);
+
+			fs.readFile('front/list.html', function(err, data) {
+				if (err) console.log(err);
+				res.writeHead(200, {'Content-Type': 'text/html'});
+				res.end(data);
+			});
+			
 		break;
 
 		default: 

@@ -22,7 +22,7 @@ function makeQueryDB(type) {
 
 
   return new Promise(function(resolve, reject){
-    con.query(sql || "SELECT * FROM operations", function (err, result, fields) {
+    con.query(sql, function (err, result) {
         if (err) throw err;
         resolve(result)
       })
@@ -32,7 +32,7 @@ function makeQueryDB(type) {
 
 function buildQuery(type) {
   switch (type) {
-    case "allrecords":
+    case "allRecords":
       return "SELECT * FROM operations"
     break;
 
