@@ -27,7 +27,7 @@ Error: ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protoc
 
 CAMBIAR EL IDENTIFIED WITH!!
 	
-
+mysql_native_password 
 
 GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'alkfs'@'localhost' WITH GRANT OPTION;
 
@@ -52,13 +52,9 @@ var url = require('url');
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-  /*host: "localhost",
-  user: "alkfs",
-  password: "alkpass",*/
   host: "localhost",
-  user: "probando",
-  password: "paranode",
-
+  user: "alkfs",
+  password: "alkpass",
   database: 'alkdb'
   
 });
