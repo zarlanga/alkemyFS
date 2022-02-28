@@ -65,6 +65,17 @@ http.createServer(function (req, res) {
 			getQuery(res, "allRecords");
 		break;
 
+
+		case "/editRecord":
+				if(req.method == 'POST'){
+					res.writeHead(200, {'Content-Type': 'text/html'});
+					res.end("entroooooo");
+				} else {
+					res.writeHead(200, {'Content-Type': 'text/html'});
+					res.end("nopost");
+				}
+		break;
+		
 		case "/list.html":
 
 			fs.readFile('front/list.html', function(err, data) {
