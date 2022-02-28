@@ -8,6 +8,7 @@ fetch('getFullList')
 								<input type="text" name="Concepto" value='${r.Concepto}' readonly required>
 								<input type="number" name="Monto" value='${r.Monto}' readonly required>
 								<input type="text" name="IngEgr" value='${r.IngEgr}'size="8" disabled>
+								<input type="text" name="url" style="display:none" value="${document.URL}"></input>
 								<button id=${'b' + r.OpID} type="button" onclick='habilitar(${r.OpID})'>Editar</button>
 								<input id=${'s' + r.OpID} type="submit" value="Realizar Cambios" style="display:none"> 
 							</form>`
