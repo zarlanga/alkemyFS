@@ -11,6 +11,11 @@ fetch('getFullList')
 								<input type="text" name="url" style="display:none" value="${document.URL}"></input>
 								<button id=${'b' + r.OpID} type="button" onclick='habilitar(${r.OpID})'>Editar</button>
 								<input id=${'s' + r.OpID} type="submit" value="Realizar Cambios" style="display:none"> 
+							</form>
+							<form action="deleteRecord" method="post">
+								<input type="text" name="url" style="display:none" value="${document.URL}"></input>
+								<input type="text" name="OpID" value='${r.OpID}' size="5" style="display:none">
+								<input type="submit" value="Eliminar Registro" style="background-color:red"> 
 							</form>`
 				document.getElementById("list").innerHTML += text;
 

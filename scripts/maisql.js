@@ -65,6 +65,10 @@ function buildQuery(type, obj) {
       VALUES (${obj.Monto}, '${obj.Concepto}','${obj.FechaCreado}', '${obj.IngEgr}' );`
     break;
 
+    case "delete":
+      return `DELETE FROM operations WHERE OpID = ${obj.OpID};`
+    break;
+
 
     default:
       return "SELECT * FROM operations"

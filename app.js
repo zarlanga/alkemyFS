@@ -80,10 +80,6 @@ http.createServer(function (req, res) {
 					req.on('data', (data) => {
 						changeDB(data, res, 'edit') 
 					})
-					
-				} else {
-					res.writeHead(200, {'Content-Type': 'text/html'});
-					res.end("nopost");
 				}
 		break;
 
@@ -92,13 +88,19 @@ http.createServer(function (req, res) {
 					req.on('data', (data) => {
 						changeDB(data, res, 'insert') 
 					})
-					
-				} else {
-					res.writeHead(200, {'Content-Type': 'text/html'});
-					res.end("nopost");
 				}
 		break;
 		
+		case "/deleteRecord":
+				if(req.method == 'POST'){
+					req.on('data', (data) => {
+						console.log("ddd" + data)
+						changeDB(data, res, 'delete') 
+					})
+				}
+				
+		break;
+
 		case "/list.html":
 
 			fs.readFile('front/list.html', function(err, data) {
