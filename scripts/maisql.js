@@ -53,9 +53,10 @@ function buildQuery(type, obj) {
     break;
 
     case "edit":
+      console.log("dateeeee " + obj.FechaCreado);
       return `UPDATE operations 
-      SET Monto = ${obj.Monto}, Concepto = '${obj.Concepto}' /*, FechaCreado = ${obj.FechaCreado + 'T00:00:00.000Z'}*/ 
-      WHERE OpID = ${obj.OpID}`
+      SET Monto = ${obj.Monto}, Concepto = '${obj.Concepto}', FechaCreado = '${obj.FechaCreado}' 
+      WHERE OpID = ${obj.OpID};`
     break;
 
     default:
@@ -75,8 +76,8 @@ function buildSqlInsert(param) {
 
   if (!param) param = createRandomizedParam()
 
-  var sql ="INSERT INTO operations (Concepto, Monto, IngEgr)VALUES (";
-  sql += `'${param.concepto}', '${param.monto}','${param.IngEgr}');` 
+  var sql ="INSERT INTO operations (Concepto, Monto, IngEgr, FechaCreado)VALUES (";
+  sql += `'${param.concepto}', '${param.monto}','${param.IngEgr}', '${param.FechaCreado}' );` 
 
   return sql;
   
@@ -85,7 +86,8 @@ function buildSqlInsert(param) {
 function createRandomizedParam() {
   return {concepto:"randomizado",
           monto: Math.floor(Math.random() * 400),
-          IngEgr: 1 + Math.floor(Math.random()*2)
+          IngEgr: 1 + Math.floor(Math.random()*2),
+          FechaCreado: `${1002 + Math.floor(Math.random()*1500)}-${1+Math.floor(Math.random()*10)}-${1+Math.floor(Math.random()*10)}`
           };
 }
 

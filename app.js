@@ -72,7 +72,7 @@ http.createServer(function (req, res) {
 					req.on('data', (data) => {
 						var data = querystring.decode(""+data);
 						db.makeQueryDB("edit", data)
-						
+
 						res.writeHead(200, {'Content-Type': 'text/html'});
 					  res.end(JSON.stringify(data));
 					})
