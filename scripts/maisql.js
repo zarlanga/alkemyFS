@@ -16,9 +16,9 @@ con.connect(function(err) {
 });
 
 
-function makeQueryDB(type) {
+function makeQueryDB(type, obj) {
 
-  var sql =buildQuery(type);
+  var sql =buildQuery(type, obj);
 
 
   return new Promise(function(resolve, reject){
@@ -30,7 +30,7 @@ function makeQueryDB(type) {
 }
 
 
-function buildQuery(type) {
+function buildQuery(type, obj) {
   switch (type) {
     case "allRecords":
       return "SELECT * FROM operations"
@@ -50,6 +50,12 @@ function buildQuery(type) {
 
     case "last10":
       return "SELECT * FROM operations ORDER BY OpID DESC LIMIT 10;"
+    break;
+
+    case "edit":
+      return `UPDATE operations 
+      SET Monto = ${obj.Monto}, Concepto = '${obj.Concepto}' /*, FechaCreado = ${obj.FechaCreado + 'T00:00:00.000Z'}*/ 
+      WHERE OpID = ${obj.OpID}`
     break;
 
     default:

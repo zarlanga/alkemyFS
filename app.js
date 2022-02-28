@@ -28,6 +28,7 @@ var url = require('url');
 var fs = require('fs');
 
 var db = require('./scripts/maisql.js');
+var querystring = require('querystring')
 
 //db.test();
 
@@ -68,8 +69,14 @@ http.createServer(function (req, res) {
 
 		case "/editRecord":
 				if(req.method == 'POST'){
-					res.writeHead(200, {'Content-Type': 'text/html'});
-					res.end("entroooooo");
+					req.on('data', (data) => {
+						var data = querystring.decode(""+data);
+						db.makeQueryDB("edit", data)
+						
+						res.writeHead(200, {'Content-Type': 'text/html'});
+					  res.end(JSON.stringify(data));
+					})
+					
 				} else {
 					res.writeHead(200, {'Content-Type': 'text/html'});
 					res.end("nopost");
@@ -93,6 +100,8 @@ http.createServer(function (req, res) {
 	}
 
 }).listen(8080);
+
+
 
 
 async function getQuery(res, type) {
