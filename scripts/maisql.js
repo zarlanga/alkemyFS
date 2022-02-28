@@ -33,7 +33,7 @@ function makeQueryDB(type, obj) {
 function buildQuery(type, obj) {
   switch (type) {
     case "allRecords":
-      return "SELECT * FROM operations"
+      return "SELECT * FROM operations ORDER BY OpID DESC"
     break;
 
     case "saldo":
@@ -41,7 +41,9 @@ function buildQuery(type, obj) {
     break;
     
     case "createTable":
-      return "CREATE TABLE operations (OpID int NOT NULL AUTO_INCREMENT PRIMARY KEY, Concepto VARCHAR(40) NOT NULL, Monto DECIMAL(12, 2) NOT NULL, FechaCreado TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, FechaEditado TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, IngEgr ENUM('Ingreso', 'Egreso') NOT NULL);"    
+    //fechacreado sola ser timestamp, deberia cambiarle el default despues de resolver los insert y demas
+    //dropeado el default, dropear fecha editado quizas? 
+      return "CREATE TABLE operations (OpID int NOT NULL AUTO_INCREMENT PRIMARY KEY, Concepto VARCHAR(40) NOT NULL, Monto DECIMAL(12, 2) NOT NULL, FechaCreado DATE NOT NULL, FechaEditado TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, IngEgr ENUM('Ingreso', 'Egreso') NOT NULL);"    
     break
 
     case "insertRandom":
@@ -53,11 +55,16 @@ function buildQuery(type, obj) {
     break;
 
     case "edit":
-      console.log("dateeeee " + obj.FechaCreado);
       return `UPDATE operations 
       SET Monto = ${obj.Monto}, Concepto = '${obj.Concepto}', FechaCreado = '${obj.FechaCreado}' 
       WHERE OpID = ${obj.OpID};`
     break;
+
+    case "insert":
+      return `INSERT INTO operations (Monto, Concepto, FechaCreado, IngEgr)
+      VALUES (${obj.Monto}, '${obj.Concepto}','${obj.FechaCreado}', '${obj.IngEgr}' );`
+    break;
+
 
     default:
       return "SELECT * FROM operations"
@@ -84,6 +91,7 @@ function buildSqlInsert(param) {
 }
 
 function createRandomizedParam() {
+
   return {concepto:"randomizado",
           monto: Math.floor(Math.random() * 400),
           IngEgr: 1 + Math.floor(Math.random()*2),

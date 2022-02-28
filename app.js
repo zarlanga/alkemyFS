@@ -20,6 +20,14 @@ ingresos y egresos de dinero cargados, y un listado de los últimos 10 registrad
 	
 	database: setup
 
+	--hacer el return del edit (la misma pagina on un query en la url que tire un alert?)
+	--hacer que muestre de a n registros on un query en la url tambien?
+	--ordenarlos del ultimo al priero?
+	--form de insert
+
+	-- front end 
+
+
 */
 
 
@@ -70,11 +78,19 @@ http.createServer(function (req, res) {
 		case "/editRecord":
 				if(req.method == 'POST'){
 					req.on('data', (data) => {
-						var data = querystring.decode(""+data);
-						db.makeQueryDB("edit", data)
+						changeDB(data, res, 'edit') 
+					})
+					
+				} else {
+					res.writeHead(200, {'Content-Type': 'text/html'});
+					res.end("nopost");
+				}
+		break;
 
-						res.writeHead(200, {'Content-Type': 'text/html'});
-					  res.end(JSON.stringify(data));
+		case "/insertRecord":
+				if(req.method == 'POST'){
+					req.on('data', (data) => {
+						changeDB(data, res, 'insert') 
 					})
 					
 				} else {
@@ -93,6 +109,26 @@ http.createServer(function (req, res) {
 			
 		break;
 
+
+
+
+
+		case "/scriptsfront/scriptlist.js":
+			fs.readFile('front/scriptsfront/scriptlist.js', function(err, data) {
+				if (err) console.log(err);
+				res.writeHead(200, {'Content-Type': 'text/html'});
+				res.end(data);
+			});
+		break;
+
+		case "/scriptsfront/scriptinput.js":
+			fs.readFile('front/scriptsfront/scriptinput.js', function(err, data) {
+				if (err) console.log(err);
+				res.writeHead(200, {'Content-Type': 'text/html'});
+				res.end(data);
+			});
+		break;
+
 		default: 
 			res.writeHead(200, {'Content-Type': 'text/html'});
 			res.end("fourofourrr");
@@ -101,7 +137,18 @@ http.createServer(function (req, res) {
 
 }).listen(8080);
 
-
+async function changeDB(data, res, type) {
+	var data = querystring.decode(""+data);
+	await db.makeQueryDB(type, data)
+	
+	//if (type == 'edit') {
+		fs.readFile('front/list.html', function(err, data) {
+				if (err) console.log(err);
+				res.writeHead(200, {'Content-Type': 'text/html'});
+				res.end(data);
+			});
+	//}
+}
 
 
 async function getQuery(res, type) {
@@ -111,3 +158,4 @@ async function getQuery(res, type) {
 	res.end(JSON.stringify(retquery))
   
 }
+
