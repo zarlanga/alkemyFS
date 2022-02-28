@@ -9,7 +9,13 @@
 	<h1 style='background-color: blueviolet;'>HOME</h1>
 	<p id='saldo'></p>
 	<br>
+
+	<button onclick="mostrarFormInput()">Nuevo registro</button>
+	<div id="formInput"></div>
 	<div id='last10'></div>
+
+	<script src="scriptsfront/scriptinput.js" type="text/javascript"></script>
+
 	<script type="text/javascript">
 		fetch('getSaldo')
 			.then(data => data.json())

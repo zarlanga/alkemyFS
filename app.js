@@ -138,16 +138,18 @@ http.createServer(function (req, res) {
 }).listen(8080);
 
 async function changeDB(data, res, type) {
+	console.log("---" + data);
 	var data = querystring.decode(""+data);
 	await db.makeQueryDB(type, data)
+
+	var urlRes = url.parse(data.url, true).pathname;	
 	
-	//if (type == 'edit') {
-		fs.readFile('front/list.html', function(err, data) {
-				if (err) console.log(err);
-				res.writeHead(200, {'Content-Type': 'text/html'});
-				res.end(data);
-			});
-	//}
+	fs.readFile("front"+urlRes, function(err, data) {
+			if (err) console.log(err);
+			res.writeHead(200, {'Content-Type': 'text/html'});
+			res.end(data);
+		});
+	
 }
 
 
