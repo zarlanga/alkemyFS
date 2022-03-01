@@ -34,13 +34,19 @@ ingresos y egresos de dinero cargados, y un listado de los últimos 10 registrad
 var http = require('http');
 var url = require('url');
 var fs = require('fs');
-
-var db = require('./scripts/maisql.js');
 var querystring = require('querystring')
+var db = require('./scripts/maisql.js');
 
-//db.test();
+db.seedDB(20)
 
-//db.seedDB(10);
+//descomentar la linea de abajo para crear la tabla y seedear la base de datos
+//inicializarDB()
+
+async function inicializarDB(){
+
+	await db.makeQueryDB("createTable")
+	db.seedDB(20);
+}
 
 http.createServer(function (req, res) {
 
@@ -61,6 +67,14 @@ http.createServer(function (req, res) {
 			fs.readFile('front/css/index.css', function(err, data) {
 				if (err) console.log(err);
 				res.writeHead(200);
+				res.end(data);
+			});
+		break;
+
+		case "/scriptsfront/scriptindex.js":
+			fs.readFile('front/scriptsfront/scriptindex.js', function(err, data) {
+				if (err) console.log(err);
+				res.writeHead(200, {'Content-Type': 'text/html'});
 				res.end(data);
 			});
 		break;
