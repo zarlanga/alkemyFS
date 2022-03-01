@@ -37,7 +37,6 @@ var fs = require('fs');
 var querystring = require('querystring')
 var db = require('./scripts/maisql.js');
 
-db.seedDB(20)
 
 //descomentar la linea de abajo para crear la tabla y seedear la base de datos
 //inicializarDB()
@@ -57,6 +56,14 @@ http.createServer(function (req, res) {
 
 		case "/img/alkemy.png":
 			fs.readFile('front/img/alkemy.png', function(err, data) {
+				if (err) console.log(err);
+				res.writeHead(200);
+				res.end(data);
+			});
+		break;
+
+		case "/css/general.css":
+			fs.readFile('front/css/general.css', function(err, data) {
 				if (err) console.log(err);
 				res.writeHead(200);
 				res.end(data);
