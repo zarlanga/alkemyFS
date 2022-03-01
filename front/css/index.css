@@ -10,6 +10,7 @@
 
 h1 {
 	display: inline-block;
+	color: #313;
 	padding: 15px;
 	border: 5px 5px 1px solid red ;
 	background-image: linear-gradient(to left, #a55 , #55a);
@@ -21,7 +22,39 @@ h2 {
 	display: inline-block;
 	background-image: linear-gradient(to right, #a55 , #55a);
 	padding: 15px;
+	color: #515;
 	border: 1px 5px 5px solid red ;
 	border-radius:0 0 30px 30px ;
 	margin: 0px;
+}
+nav {
+	background-color: darkcyan;
+	height: 38px;
+}
+nav a {
+	margin-left: 16vw;
+	display: inline-block;
+	text-decoration: none;
+	padding: 10px;
+	background-color: palevioletred;
+	color: white;
+}
+nav a:hover {
+	background-color: blueviolet;
+	color: white;
+}
+
+section {
+
+	background-image: radial-gradient(gold , silver , darkcyan );
+	padding: 2.5vh;
+	text-align: center;
+}
+
+section p {
+	font-size: 2em;
+	color: #354;
+}
+section p span {
+	color: #374;
 }

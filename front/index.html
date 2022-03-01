@@ -7,12 +7,16 @@
 	<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-	<div id="container">
+	<header id="container">
 		<img id="logo" src="img/alkemy.png" /><br>
 		<h1>HOME Alkemy challenge</h1><br>
 		<h2>Roberto Zitto</h2>
-	</div>
-	<p id='saldo'></p>
+	</header>
+	<nav><a href="./list.html">Ver todos los movimientos</a></nav>
+
+	<section>
+		<p id='saldo'></p>
+	</section>
 	<br>
 
 	<button onclick="mostrarFormInput()">Nuevo registro</button>
@@ -24,7 +28,9 @@
 	<script type="text/javascript">
 		fetch('getSaldo')
 			.then(data => data.json())
-			.then(data => document.getElementById('saldo').innerHTML = JSON.stringify(data));
+			.then(data => document.getElementById('saldo').innerHTML =
+			 `SALDO ACTUAL: <span>${data[0].saldo}</span>` )
+				//JSON.stringify(data));
 		fetch('last10')
 			.then(data => data.json())
 			.then(data => {
