@@ -109,3 +109,17 @@ td {
 	padding: 5px;
 	background-color: cyan;
 }
+
+
+@media screen and (max-width: 768px) {
+	form input, form select {
+		width: 49vw;
+	}
+
+	th:last-child, td:last-child {
+		display: none;
+	}
+	#tablecont, table {
+		padding: 0px;
+	}
+}
