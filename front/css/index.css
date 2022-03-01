@@ -1,3 +1,7 @@
+body {
+	background-color: darkcyan;
+}
+
 #logo {
 	opacity: 0.4;
 }
@@ -31,7 +35,7 @@ nav {
 	background-color: darkcyan;
 	height: 38px;
 }
-nav a {
+nav a  {
 	margin-left: 16vw;
 	display: inline-block;
 	text-decoration: none;
@@ -45,7 +49,8 @@ nav a:hover {
 }
 
 section {
-
+	position: relative;
+	top:0px;
 	background-image: radial-gradient(gold , silver , darkcyan );
 	padding: 2.5vh;
 	text-align: center;
@@ -57,4 +62,41 @@ section p {
 }
 section p span {
 	color: #374;
+}
+
+section button {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	padding: 10px;
+	opacity: 0.8;
+	border-radius: 0  6px 0 0;
+}
+
+section button:hover{
+	opacity:1;
+	background-color: silver;
+
+}
+form {
+	background-color: blueviolet;
+	text-align: center;
+
+}
+
+form input, form select {
+	width: 23vw;
+	margin: 15px 0px 10px;
+	background-color: cyan;
+
+}
+[type="submit"] {
+	background-color: #5d5;
+	padding: 10px;
+}
+section table {
+	display: inline-block;
+	padding: 10vw;
+	background-color: rgba(100,100,100,0.7);
+
 }
