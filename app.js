@@ -49,6 +49,38 @@ http.createServer(function (req, res) {
 
 	switch(ur.pathname){
 
+		case "/img/alkemy.png":
+			fs.readFile('front/img/alkemy.png', function(err, data) {
+				if (err) console.log(err);
+				res.writeHead(200);
+				res.end(data);
+			});
+		break;
+
+		case "/css/index.css":
+			fs.readFile('front/css/index.css', function(err, data) {
+				if (err) console.log(err);
+				res.writeHead(200);
+				res.end(data);
+			});
+		break;
+
+		case "/scriptsfront/scriptlist.js":
+			fs.readFile('front/scriptsfront/scriptlist.js', function(err, data) {
+				if (err) console.log(err);
+				res.writeHead(200, {'Content-Type': 'text/html'});
+				res.end(data);
+			});
+		break;
+
+		case "/scriptsfront/scriptinput.js":
+			fs.readFile('front/scriptsfront/scriptinput.js', function(err, data) {
+				if (err) console.log(err);
+				res.writeHead(200, {'Content-Type': 'text/html'});
+				res.end(data);
+			});
+		break;
+
 		case "/index.html":
 			fs.readFile('front/index.html', function(err, data) {
 				
@@ -57,7 +89,18 @@ http.createServer(function (req, res) {
 				res.end(data);
 			});
 		break;
+		
+		case "/list.html":
+
+			fs.readFile('front/list.html', function(err, data) {
+				if (err) console.log(err);
+				res.writeHead(200, {'Content-Type': 'text/html'});
+				res.end(data);
+			});
 			
+		break;
+
+
 		case "/testfetch":
 			getQuery(res)
 		break;
@@ -74,61 +117,22 @@ http.createServer(function (req, res) {
 			getQuery(res, "allRecords");
 		break;
 
-
 		case "/editRecord":
-				if(req.method == 'POST'){
-					req.on('data', (data) => {
-						changeDB(data, res, 'edit') 
-					})
-				}
+			req.on('data', (data) => {
+				changeDB(data, res, 'edit') 
+			})
 		break;
 
 		case "/insertRecord":
-				if(req.method == 'POST'){
-					req.on('data', (data) => {
-						changeDB(data, res, 'insert') 
-					})
-				}
+			req.on('data', (data) => {
+				changeDB(data, res, 'insert') 
+			})
 		break;
 		
 		case "/deleteRecord":
-				if(req.method == 'POST'){
-					req.on('data', (data) => {
-						console.log("ddd" + data)
-						changeDB(data, res, 'delete') 
-					})
-				}
-				
-		break;
-
-		case "/list.html":
-
-			fs.readFile('front/list.html', function(err, data) {
-				if (err) console.log(err);
-				res.writeHead(200, {'Content-Type': 'text/html'});
-				res.end(data);
-			});
-			
-		break;
-
-
-
-
-
-		case "/scriptsfront/scriptlist.js":
-			fs.readFile('front/scriptsfront/scriptlist.js', function(err, data) {
-				if (err) console.log(err);
-				res.writeHead(200, {'Content-Type': 'text/html'});
-				res.end(data);
-			});
-		break;
-
-		case "/scriptsfront/scriptinput.js":
-			fs.readFile('front/scriptsfront/scriptinput.js', function(err, data) {
-				if (err) console.log(err);
-				res.writeHead(200, {'Content-Type': 'text/html'});
-				res.end(data);
-			});
+			req.on('data', (data) => {
+				changeDB(data, res, 'delete') 
+			})
 		break;
 
 		default: 

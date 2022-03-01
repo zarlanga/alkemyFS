@@ -4,9 +4,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>HOME Alkemy Challenge </title>
+	<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-	<h1 style='background-color: blueviolet;'>HOME</h1>
+	<div id="container">
+		<img id="logo" src="img/alkemy.png" /><br>
+		<h1>HOME Alkemy challenge</h1><br>
+		<h2>Roberto Zitto</h2>
+	</div>
 	<p id='saldo'></p>
 	<br>
 
@@ -25,10 +30,6 @@
 			.then(data => {
 				for (r of data) document.getElementById('last10'). innerHTML += `${r.Concepto} // ${r.Monto}  // ${r.IngEgr} <br>`
 			})
-
-
-
-		
-				
+	
 	</script>
 </body>
