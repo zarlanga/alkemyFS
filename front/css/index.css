@@ -40,12 +40,7 @@ form {
 	background-image: radial-gradient(silver, gold 15%, darkcyan);
 }
 
-form input, form select {
-	width: 23vw;
-	margin: 15px 0px 10px;
-	background-color: cyan;
 
-}
 [type="submit"] {
 	background-color: #5d5;
 	padding: 10px;
