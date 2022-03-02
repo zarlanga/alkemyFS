@@ -33,6 +33,29 @@ section form{
 
 }
 
+div {
+	text-align: center;
+}
+
+div form {
+	padding: 10px;
+}
+
+#formInput input, #formInput select {
+	/*width: 49vw;*/
+	margin: 15px 0px 10px;
+	background-color: cyan;
+}
+
+#formInput [type="submit"] {
+	background-color: #5d5;
+	padding: 10px;
+}
+
+.row {
+	border-top: 4px solid black;
+}
+
 .row:nth-child(2n+1) {
 	background-image: linear-gradient(gold , darkcyan);;
 }
@@ -40,3 +63,34 @@ section form{
 .row:nth-child(2n) {
 	background-image: linear-gradient(darkcyan, gold);;
 }
+
+.row input {
+	border: 0;
+	background-color: rgba(0, 0, 0, 0);
+}
+.row form {
+	text-align: center;
+
+}
+
+.row input, .row button {
+	display: block;
+	margin: 10px auto;
+	text-align: center;
+	font-size: 1.3em;
+}
+
+.row input:nth-child(4) {
+
+}
+/*
+.row input:nth-child(1), 
+.row input:nth-child(2), 
+.row input:nth-child(5) {
+	
+}
+
+.row input:nth-child(3){
+	text-align: right;
+
+}/*

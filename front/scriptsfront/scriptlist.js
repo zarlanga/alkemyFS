@@ -7,8 +7,8 @@ fetch('getFullList')
 									<input type="text" name="OpID" value='${r.OpID}' size="5" readonly>
 									<input type="date" name="FechaCreado" value='${getDateYo(r.FechaCreado)}' readonly required>
 									<input type="text" name="Concepto" value='${r.Concepto}' readonly required>
-									<input type="number" name="Monto" value='${r.Monto}' readonly required>
-									<input type="text" name="IngEgr" value='${r.IngEgr}'size="8" disabled>
+									<input type="number" name="Monto" value='${r.Monto}' style=${"color:" + (r.IngEgr == "Ingreso" ? "green": "red")} readonly required>
+									<input type="text" style="display:none" name="IngEgr" value='${r.IngEgr}'size="8" disabled>
 									<input type="text" name="url" style="display:none" value="${document.URL}"></input>
 									<button id=${'b' + r.OpID} type="button" onclick='habilitar(${r.OpID})'>Editar</button>
 									<input id=${'s' + r.OpID} type="submit" value="Realizar Cambios" style="display:none"> 
@@ -49,7 +49,7 @@ fetch('getFullList')
 			//location.reload()
 			fields.forEach(i =>{
 					i.setAttribute("readonly", "true")
-					i.style.backgroundColor = "white"
+					i.style.backgroundColor = "rgba(0, 0, 0, 0)";
 				})
 			form.reset();
 			button1.innerHTML ="Editar";
