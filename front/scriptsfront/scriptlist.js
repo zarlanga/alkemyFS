@@ -7,7 +7,7 @@ fetch('getFullList')
 									<input type="text" name="OpID" value='${r.OpID}' size="5" readonly>
 									<input type="date" name="FechaCreado" value='${getDateYo(r.FechaCreado)}' readonly required>
 									<input type="text" name="Concepto" value='${r.Concepto}' readonly required>
-									<input type="number" name="Monto" value='${r.Monto}' style=${"color:" + (r.IngEgr == "Ingreso" ? "green": "red")} readonly required>
+									<input type="number" min='0' name="Monto" value='${r.Monto}' style=${"color:" + (r.IngEgr == "Ingreso" ? "green": "red")} readonly required>
 									<input type="text" style="display:none" name="IngEgr" value='${r.IngEgr}'size="8" disabled>
 									<input type="text" name="url" style="display:none" value="${document.URL}"></input>
 									<button id=${'b' + r.OpID} type="button" onclick='habilitar(${r.OpID})'>Editar</button>
@@ -16,7 +16,7 @@ fetch('getFullList')
 								<form action="deleteRecord" method="post">
 									<input type="text" name="url" style="display:none" value="${document.URL}"></input>
 									<input type="text" name="OpID" value='${r.OpID}' size="5" style="display:none">
-									<input type="submit" value="Eliminar Registro" style="background-color:red"> 
+									<input type="submit" value="Eliminar Registro" style="background-color:red; color: white"> 
 								</form>
 							</div>`
 				document.getElementById("list").innerHTML += text;

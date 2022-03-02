@@ -37,9 +37,14 @@ div {
 	text-align: center;
 }
 
-div form {
-	padding: 10px;
+div form:fist-child {
+	padding-top: 10px;
 }
+
+div form:last-child {
+	padding-bottom: 10px;
+}
+
 
 #formInput input, #formInput select {
 	/*width: 49vw;*/
@@ -57,31 +62,28 @@ div form {
 }
 
 .row:nth-child(2n+1) {
-	background-image: linear-gradient(gold , darkcyan);;
+	background-image: linear-gradient(gold , violet);;
 }
 
 .row:nth-child(2n) {
-	background-image: linear-gradient(darkcyan, gold);;
+	background-image: linear-gradient(violet, gold);;
 }
 
 .row input {
 	border: 0;
 	background-color: rgba(0, 0, 0, 0);
 }
-.row form {
-	text-align: center;
-
-}
 
 .row input, .row button {
 	display: block;
-	margin: 10px auto;
+	margin: 8px auto;
 	text-align: center;
-	font-size: 1.3em;
+	font-size: 1.1em;
 }
 
 .row input:nth-child(4) {
-
+	font-size: 1.3em;
+	font-weight: bolder;
 }
 /*
 .row input:nth-child(1), 
