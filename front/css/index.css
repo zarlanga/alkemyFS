@@ -31,9 +31,13 @@ section button:hover{
 
 }
 form {
-	background-color: blueviolet;
+	/*background-color: blueviolet;*/
 	text-align: center;
 
+}
+
+#formInput {
+	background-image: radial-gradient(silver, gold 15%, darkcyan);
 }
 
 form input, form select {

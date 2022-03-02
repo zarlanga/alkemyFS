@@ -1,0 +1,42 @@
+section {
+	position: relative;
+	top:0px;
+	background-image: linear-gradient(-30deg, gold , darkcyan);
+	padding: 2.5vh;
+	text-align: center;
+}
+
+section p {
+	opacity: 0;
+}
+section button {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	padding: 10px;
+	opacity: 0.8;
+	border-radius: 0  6px 0 0;
+}
+
+section button:hover{
+	padding: 10px;
+	opacity:1;
+	background-color: silver;
+}
+
+section form{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	padding: 10px 0;
+	
+
+}
+
+.row:nth-child(2n+1) {
+	background-image: linear-gradient(gold , darkcyan);;
+}
+
+.row:nth-child(2n) {
+	background-image: linear-gradient(darkcyan, gold);;
+}

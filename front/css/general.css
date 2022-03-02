@@ -8,7 +8,7 @@ body {
 
 header {
 	text-align: center;
-	background-image: linear-gradient(to right, red , darkcyan);
+	background-image: linear-gradient(to bottom right, red , darkcyan);
 	padding: 20px;
 }
 
@@ -46,4 +46,8 @@ nav a  {
 nav a:hover {
 	background-color: blueviolet;
 	color: white;
+}
+
+#formInput {
+	background-image: linear-gradient(gold, darkcyan, gold);
 }

@@ -2,21 +2,23 @@ fetch('getFullList')
 		.then(data => data.json())
 		.then(data => {
 			for (r of data) {
-				var text = `<form action="editRecord" id=${'r' + r.OpID} class=${r.IngEgr == "Ingreso" ? 'ingreso' : 'egreso'} method="post">
-								<input type="text" name="OpID" value='${r.OpID}' size="5" readonly>
-								<input type="date" name="FechaCreado" value='${getDateYo(r.FechaCreado)}' readonly required>
-								<input type="text" name="Concepto" value='${r.Concepto}' readonly required>
-								<input type="number" name="Monto" value='${r.Monto}' readonly required>
-								<input type="text" name="IngEgr" value='${r.IngEgr}'size="8" disabled>
-								<input type="text" name="url" style="display:none" value="${document.URL}"></input>
-								<button id=${'b' + r.OpID} type="button" onclick='habilitar(${r.OpID})'>Editar</button>
-								<input id=${'s' + r.OpID} type="submit" value="Realizar Cambios" style="display:none"> 
-							</form>
-							<form action="deleteRecord" method="post">
-								<input type="text" name="url" style="display:none" value="${document.URL}"></input>
-								<input type="text" name="OpID" value='${r.OpID}' size="5" style="display:none">
-								<input type="submit" value="Eliminar Registro" style="background-color:red"> 
-							</form>`
+				var text = `<div class='row'>
+								<form action="editRecord" id=${'r' + r.OpID} class=${r.IngEgr == "Ingreso" ? 'ingreso' : 'egreso'} method="post">
+									<input type="text" name="OpID" value='${r.OpID}' size="5" readonly>
+									<input type="date" name="FechaCreado" value='${getDateYo(r.FechaCreado)}' readonly required>
+									<input type="text" name="Concepto" value='${r.Concepto}' readonly required>
+									<input type="number" name="Monto" value='${r.Monto}' readonly required>
+									<input type="text" name="IngEgr" value='${r.IngEgr}'size="8" disabled>
+									<input type="text" name="url" style="display:none" value="${document.URL}"></input>
+									<button id=${'b' + r.OpID} type="button" onclick='habilitar(${r.OpID})'>Editar</button>
+									<input id=${'s' + r.OpID} type="submit" value="Realizar Cambios" style="display:none"> 
+								</form>
+								<form action="deleteRecord" method="post">
+									<input type="text" name="url" style="display:none" value="${document.URL}"></input>
+									<input type="text" name="OpID" value='${r.OpID}' size="5" style="display:none">
+									<input type="submit" value="Eliminar Registro" style="background-color:red"> 
+								</form>
+							</div>`
 				document.getElementById("list").innerHTML += text;
 
 			}

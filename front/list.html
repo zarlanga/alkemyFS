@@ -8,18 +8,28 @@
 	<link rel="stylesheet" href="css/list.css">
 </head>
 <body>
-<h1>Listado de operaciones</h1>
+	<header>
+		<img id="logo" src="img/alkemy.png" /><br>
+		<h1>LIST Alkemy Challenge </h1><br>
+		<h2>Roberto Zitto</h2>
+	</header>
+	<nav><a href="./index.html">Volver al home</a></nav>
 
-<button onclick="mostrarFormInput()">Nuevo registro</button>
-<h3>Mostrar
-	<select  oninput="filtrarRegistros(this.value)" >
-		<option value="Todos">Todos</option>
-		<option value="Ingresos">Ingresos</option>
-		<option value="Egresos">Egresos</option>
-	</select>
+
+
+<section> 
+	<button onclick="mostrarFormInput()">Nuevo registro</button>
+	<p>.</p>
+	<form>
+		<label for="filter">Mostrar</label>
+		<select  id="filter" oninput="filtrarRegistros(this.value)" >
+			<option value="Todos">Todos</option>
+			<option value="Ingresos">Ingresos</option>
+			<option value="Egresos">Egresos</option>
+		</select>
+	</form>
 	
-</h3>
-<br>
+</section>
 <div id="formInput"></div>
 <div id='list'>
 	

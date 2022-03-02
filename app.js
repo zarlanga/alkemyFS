@@ -70,6 +70,14 @@ http.createServer(function (req, res) {
 			});
 		break;
 
+		case "/css/list.css":
+			fs.readFile('front/css/list.css', function(err, data) {
+				if (err) console.log(err);
+				res.writeHead(200);
+				res.end(data);
+			});
+		break;
+
 		case "/css/index.css":
 			fs.readFile('front/css/index.css', function(err, data) {
 				if (err) console.log(err);
